@@ -36,7 +36,9 @@ $ git init
 - `.git`폴더가 생성되며 여기에 git과 관련된 모든 정보가 저장된다.
 - git bash에 (master)라고 표시되는데, 이는 현재 폴더가 git으로 관리되고 있다는 뜻이며, `master` branch에 있다는 뜻이다. (branch에 대해서는 뒷편에서 설명하겠다.)
 
-### 3. add
+
+
+### 3. git add
 
 > `working directory` 즉, 작업 공간에서 변경된 사항을 이력으로 저장하기 위해서는 반드시 staging area를 거쳐야 한다.
 
@@ -54,17 +56,28 @@ $ git add images/      #폴더
 - 하지만 때때로 git으로 관리하고 있는 폴더 전체 중에서 특정 파일 혹은 하위 폴더만 변경이력이 있을 경우 이렇게 따로 저장해줄 수 있다.
 - 파일일 경우 add 뒤에 `파일명.확장자`로 적고 `enter` 해주면 되고 하위 폴더의 경우 `폴더명/` 으로 해준다 (예시는 images라는 폴더 전체를 업데이트 하겠다는 뜻).  
 
+>  `git status` 명령어는 git add가 되어있는지 아닌지 판단하는 명령어이다.
+
 add 전 상태
 
 ```bash
-$ 
+$ git status
+On branch master
+nothing to commit, working tree clean
 ```
 
 add후 상태
 
 ```bash
-$ 
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   "file명.md"
+
 ```
+
+이렇게 git add 가 완료되어 새로운 파일(new file)이 생성되면 commit을 할 준비가 된 것이다.
 
 
 
@@ -75,8 +88,19 @@ $
 > commit시에는 반드시 메시지를 작성해야 하며, 메시지는 변경사항을 알 수 있도록 명확하게 작성한다.
 
 ```bash
-$ git commit -m "마크다운 정리"
+$ git commit -m "git 1편"
+
+[master a---e] git 1편 1 file changed, 192 insertions(+)
+ create mode 1***44 "파일명.md"
 ```
+
+git commit을 완료했다. 
+
+현재 폴더의 상황이 그대로 스크린샷 찍혔다고 볼 수 있다.
+
+여기까지가 바로 Local환경, 즉 내 컴퓨터에서 작업이 완료되었다.
+
+이제 원격 저장소(드라이브)에 올릴 준비가 되었다!
 
 
 
@@ -90,17 +114,36 @@ github, gitlab, bitbucket 등 다양한 서비스가 있다. 추후 git이 익�
 
 #### 5-1. 준비사항
 
-github에 repository 생성
+github에 repository 생성. 
+
+무슨 말이냐면, 말그대로 우리가 올릴 드라이브에 어떤 폴더에 올릴 것인지부터 만들어 줘야 한다.
+
+github사이트에서 repository를 하나 생성해준다. 즉, 이것이 원격 저장소(remote repository) 가 된다.
 
 
 
-#### 5-2. 원격 저장소 등록
+##### 원격 저장소 만들기 (img는 구글에서 퍼옴)
+
+![Hello World · GitHub Guides](https://guides.github.com/activities/hello-world/create-new-repo.png)
+
+##### 원격 저장소 완성 (img는 구글에서 퍼옴)
+
+![Launch School - A Guide to Git and Github](https://d186loudes4jlv.cloudfront.net/git/images/github_new_repo3.png)
+
+
+
+#### 5-2. git remote 원격 저장소 등록
+
+자 이제 이 원격 저장소와 내 로컬 컴퓨터와 동기화를 위해 주소를 맞춰주는 작업을 한다.
+
+이때 사용되는 커맨드는 `git remote`이다  
 
 ```bash
 $ git remote add origin {github url}
 ```
 
 - 원격저장소(remote)로 origin이라는 이름으로 github url을 등록(add)한다
+- github url은 바로 저 페이지의 url이자, `http` 버튼 옆에 https://github.com/~로 시작하는 url이다.
 - 등록된 원격 저장소를 확인하기 위해서는 아래의 명령어를 활용한다
 
 ```bash
@@ -114,9 +157,17 @@ origin  https://github.com/{user.name}/{folder.name} (fetch)
 origin  https://github.com/{user.name}/{folder.name} (push)
 ```
 
+`git remote -v`라는 명령어를 입력해서 위와 같은 반응이 나온다면 원격저장소의 주소가 잘 입력되었다. 
+
 
 
  ### 6. git push - 원격 저장소로 업로드
+
+자 이제 준비는 모두 완료되었다.  
+
+로컬 환경의 repository에 있는 commit된 파일/폴더들을 원격 저장소로 전송해주면 끝이다.
+
+명령어는 `git push`이다  
 
 ```bash
 $ git push origin master
@@ -126,67 +177,12 @@ $ git push origin master
 
 이후 변경 사항이 생길 때마다, `add`, `commit`, `push`를 반복한다
 
+---
+
+고생했다. 이제 내 컴퓨터에 있는 파일/폴더들을 갑자기 엄마가 지워도 걱정없다. 우리는 github라는 백업 저장소에 벌써 업로드 해뒀기 때문이다.
 
 
 
+다음 편에는 git의 다른 명령어들을 자세히 설명하여 나 혼자만의  git, github 사용을 정복하고 
 
-### 2-3 git reset
-
-
-
-## 3. Push/Pull/Clone
-
-### 3-1. git push
-
-
-
-### 3-2. git pull - 원격저장소로부터 불러오기
-
-```bash
-$ git pull origin master
-```
-
-`origin`이라는 원격 저장소로부터 새로운 commit기록들을 불러온다
-
-
-
-### 3-3. git clone
-
-```bash
-$ git clone {github url}
-```
-
-`최초의 github에 업로드 되어있는 프로젝트`를 통째로 복사해서 새로운 로컬에 다운받는다.
-
-
-
-## 4. 기타
-
-### 4-1. git log
-
-```bash
-$ git log
-```
-
-위 `git log` 명령어를 입력하면 현재까지 commit의 모든 기록을 보여준다.
-
-하지만 이게 여러명이 작업하고 시간이 오래걸리는 프로젝트라면 commit이 수십, 수백, 수천개까지 쌓일 수도 있다.... ㅎㄷㄷ
-
-따라서 log들을 간단하게 한 줄로 보고 싶을 때 사용하는 명령어는 `git log --oneline`이다
-
-```bash
-$ git log --oneline
-```
-
-
-
- 
-
-### 4-2. git status
-
-staging area에 현재 뭐가 올라와 있는지 확인하는 명령어 이다.
-
-
-
-### git reset
-
+그 다음에는 branch 개념을 설명하여 협업의 영역으로 넘어가도록 하겠다.
