@@ -2,6 +2,10 @@
 
 requests를 활용할 일이 생겼는데 어떻게 돌아가는지에 대해 궁금해서 구글링과 공식문서를 통해 공부한 내용을 정리하고자 본 파일을 만들었다. 작성 내용은 본인이 읽어보고 실행해본 결과에 따른 생각을 정리하는 것이기 때문에 사실과는 다소 차이가 있을 수 있다.
 
+
+
+출처: [hch-ang github]([https://github.com/hch-ang/TIL/blob/master/Python/Python%20requests%20%ED%8C%A8%ED%82%A4%EC%A7%80.md](https://github.com/hch-ang/TIL/blob/master/Python/Python requests 패키지.md))
+
 ### requests?
 
 requests는 python에서 HTTP 요청을 보내주는 패키지이다.
