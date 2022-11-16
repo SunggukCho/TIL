@@ -15,3 +15,9 @@
   - hash 테이블에서는 key가 중복되지 않습니다.
   - hash 테이블에서 key를 검색하는 것은 O(1)로 매우 효율적입니다.
   - 따라서 데이터를 검색할 때 list보다 Set에서 하는 것이 훨씬 빠르고 효율적입니다.
+
+
+
+---
+
+출처: https://www.youtube.com/watch?v=CMgpTGs_N_w
